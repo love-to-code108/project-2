@@ -6,6 +6,7 @@ import propTypes from "prop-types"
 
 
 
+
 export const InputFieldAndCurrencySelector = ({
     fromTo
 }) => {
@@ -23,7 +24,7 @@ export const InputFieldAndCurrencySelector = ({
 
 
     return (
-        <div className=" bg-red-600 flex justify-center items-center">
+        <div className=" flex justify-center items-center">
 
 
 
