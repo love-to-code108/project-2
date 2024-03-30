@@ -29,7 +29,7 @@ export const InputFieldAndCurrencySelector = ({
 
 
             {/* the input box */}
-            <div className="flex flex-col mr-3 text-3xl">
+            <div className="flex flex-col mr-3 text-3xl font-league">
                 <label htmlFor="currencyInput">{fromTo}</label>
                 <input className=" border-2 border-black"
                  id="currencyInput" type="number" min={0} />
