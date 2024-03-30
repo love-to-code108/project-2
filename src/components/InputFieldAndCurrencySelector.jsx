@@ -39,7 +39,7 @@ export const InputFieldAndCurrencySelector = ({
             {/* the selector for the multiple currencies */}
             <div className="">
                 <select className=" bg-black text-white px-1 
-                relative top-[1.1rem] text-3xl border-2 border-black"
+                relative top-[1.1rem] text-3xl border-2 border-black cursor-pointer hover:bg-white hover:border-2 hover:border-black hover:text-black"
                  value={currentCurrency} id="" onChange={currencySelectedFromDropDown}>
                     {
                         currencyArray.map((value, index) => {
