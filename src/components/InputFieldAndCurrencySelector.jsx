@@ -29,7 +29,7 @@ export const InputFieldAndCurrencySelector = ({
 
 
             {/* the input box */}
-            <div className="flex flex-col mr-3 text-3xl">
+            <div className="flex flex-col mr-3 text-3xl font-league">
                 <label htmlFor="currencyInput">{fromTo}</label>
                 <input className=" border-2 border-black"
                  id="currencyInput" type="number" min={0} />
@@ -39,7 +39,7 @@ export const InputFieldAndCurrencySelector = ({
             {/* the selector for the multiple currencies */}
             <div className="">
                 <select className=" bg-black text-white px-1 
-                relative top-[1.1rem] text-3xl border-2 border-black"
+                relative top-[1.1rem] text-3xl border-2 border-black cursor-pointer hover:bg-white hover:border-2 hover:border-black hover:text-black"
                  value={currentCurrency} id="" onChange={currencySelectedFromDropDown}>
                     {
                         currencyArray.map((value, index) => {
