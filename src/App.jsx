@@ -44,7 +44,9 @@ function Mainapp() {
     <div className=' w-[100%] h-[100vh] flex flex-col items-center'>
 
       {/* the name of the app */}
-      <div className='mt-[4rem] mb-[12rem]'>
+      <div className='mt-[4rem] 
+      xl:mb-[14vh]
+      2xl:mb-[24vh]'>
         <h1 className=' text-6xl font-league font-semibold'>Currency Converter</h1>
       </div>
 
