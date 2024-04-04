@@ -1,8 +1,9 @@
 import { useState } from "react"
 // import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 import propTypes from "prop-types"
-import "dotenv/config"
 import "../App.css"
+
+
 
 
 /* SOME IMPORTANT COMMENTS
@@ -17,8 +18,9 @@ import "../App.css"
         fromTo
     }) => {
 
-    // INITIALISING THE API KEY HERE
-    // const freeCurrencyApi = new Freecurrencyapi('')
+       
+
+    
     
 
 
@@ -140,6 +142,11 @@ import "../App.css"
             </div>
         </div>
     )
+
+
+
+
+
 }
 
 
@@ -147,3 +154,6 @@ import "../App.css"
 InputFieldAndCurrencySelector.propTypes = {
     fromTo : propTypes.string,
 }
+
+
+

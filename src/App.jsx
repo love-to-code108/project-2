@@ -5,9 +5,8 @@ import './App.css'
 // ASSETS
 import whiteUpArrow from "./assets/White_UpArrow.svg"
 import whiteDownArrow from "./assets/White_DownArrow.svg"
-
-// import dotenv from "dotenv/config"
-
+// FREE CURRENCY API
+import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 
 
 
@@ -41,6 +40,26 @@ export default App
 function Mainapp() {
 
 
+  // INITIALISING THE API KEY HERE
+  const freeCurrencyApi = new Freecurrencyapi(import.meta.env.VITE_API_KE);
+
+  freeCurrencyApi.latest({
+    base_currency: 'USD',
+    currencies: 'EUR'
+  }).then(response => {
+    console.log(response);
+  });
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className=' w-[100%] h-[100vh] flex flex-col items-center'>
 
@@ -72,8 +91,8 @@ function Mainapp() {
         {/* the switch button */}
         <div className=' relative bottom-[5.7rem] right-[2rem] cursor-pointer'>
           <div className=' bg-black w-[4rem] h-[4rem] rounded-full flex justify-center items-center border-2 border-white'>
-              <img className=' h-[1.5rem]' src={whiteUpArrow} alt=" white up arrow" />
-              <img className=' h-[1.5rem]' src={whiteDownArrow} alt=" white down arrow" />
+            <img className=' h-[1.5rem]' src={whiteUpArrow} alt=" white up arrow" />
+            <img className=' h-[1.5rem]' src={whiteDownArrow} alt=" white down arrow" />
           </div>
         </div>
 
