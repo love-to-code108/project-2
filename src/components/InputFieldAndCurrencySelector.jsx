@@ -1,18 +1,46 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
+import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 import "../App.css"
 import propTypes from "prop-types"
 
 
+/* SOME IMPORTANT COMMENTS
+ THE USER INPUT CURRENCY VALUE IS STORED INSIDE THE 
+ userInputCurrencyValue ( THIS IS A STATE NOT A VARIABLE )
+*/
+
+/*
+*/
+
+    export const InputFieldAndCurrencySelector = ({
+        fromTo
+    }) => {
+
+    // INITIALISING THE API KEY HERE
+    const freeCurrencyApi = new Freecurrencyapi('')
 
 
 
 
-export const InputFieldAndCurrencySelector = ({
-    fromTo
-}) => {
+
+
+
+
+
+
+
+
 
     // THE CURRENCY SELECTOR ARRAY
-    const currencyArray = ["INR", "USD"]
+    const currencyArray = [
+        'AUD', 'BGN', 'BRL', 'CAD', 'CHF',
+        'CNY', 'CZK', 'DKK', 'EUR', 'GBP',
+        'HKD', 'HRK', 'HUF', 'IDR', 'ILS',
+        'INR', 'ISK', 'JPY', 'KRW', 'MXN',
+        'MYR', 'NOK', 'NZD', 'PHP', 'PLN',
+        'RON', 'RUB', 'SEK', 'SGD', 'THB',
+        'TRY', 'USD', 'ZAR'
+      ]
     const [currentCurrency , setCurrentCurrency] = useState("USD")
 
 
@@ -72,12 +100,18 @@ export const InputFieldAndCurrencySelector = ({
             {/* the input box */}
             <div className="flex flex-col mr-3 text-3xl font-league">
                 <label htmlFor="currencyInput">{fromTo}</label>
+
                 <input className=" border-2 border-black"
-                 id="currencyInput" type="number" min={0} onChange={currencyInput} value={userInputCurrencyValue} 
+                 id="currencyInput" type="number" min={0} 
+
+                 onChange={currencyInput} 
+                 
+                 value={userInputCurrencyValue} 
+
                  disabled = {disableEnableInput ? false : true}
                  
-                 
                  />
+
             </div>
 
 
