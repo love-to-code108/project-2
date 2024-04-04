@@ -81,6 +81,8 @@ function Mainapp() {
       //  console.log("THE USER INPUT :",takingUserInputFromInputCurrency)
 
       setTargetCurrencyValue(() => Math.round(response["data"][targetCurrencyData] * takingUserInputFromInputCurrency * 100)/100);
+    }).error(err => {
+      console.log(err);
     });
 
   }
