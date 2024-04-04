@@ -1,7 +1,8 @@
-import { useState,useEffect } from "react"
-import Freecurrencyapi from '@everapi/freecurrencyapi-js';
-import "../App.css"
+import { useState } from "react"
+// import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 import propTypes from "prop-types"
+import "dotenv/config"
+import "../App.css"
 
 
 /* SOME IMPORTANT COMMENTS
@@ -17,7 +18,8 @@ import propTypes from "prop-types"
     }) => {
 
     // INITIALISING THE API KEY HERE
-    const freeCurrencyApi = new Freecurrencyapi('')
+    // const freeCurrencyApi = new Freecurrencyapi('')
+    
 
 
 

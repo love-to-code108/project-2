@@ -6,11 +6,12 @@ import './App.css'
 import whiteUpArrow from "./assets/White_UpArrow.svg"
 import whiteDownArrow from "./assets/White_DownArrow.svg"
 
+// import dotenv from "dotenv/config"
+
 
 
 
 function App() {
-
 
   return (
     <div>
