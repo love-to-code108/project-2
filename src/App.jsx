@@ -14,12 +14,11 @@ import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 // RECOIL
 import {
   RecoilRoot,
-  useRecoilValue,
   useRecoilState
 } from 'recoil';
 
 import { inputCurrencyDataFrom, inputCurrencyDataTo, takingUserInputFromInputCurrencyAtom, targetCurrencyValueAtom } from "./recoil/atom.js"
-import { data } from 'autoprefixer';
+
 
 
 
@@ -47,8 +46,7 @@ export default App
 
 
 
-
-
+// THE MAIN APP COMPONENT
 
 function Mainapp() {
 
