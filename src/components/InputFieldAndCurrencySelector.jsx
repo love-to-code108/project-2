@@ -4,7 +4,7 @@ import propTypes from "prop-types"
 import "../App.css"
 
 // IMPORTING AN ATOM 
-import { inputCurrencyDataFrom , inputCurrencyDataTo } from "../recoil/atom.js"
+import { inputCurrencyDataFrom , inputCurrencyDataTo, targetCurrencyValueAtom , takingUserInputFromInputCurrencyAtom } from "../recoil/atom.js"
 import { useRecoilState } from "recoil"
 
 
@@ -23,15 +23,26 @@ export const InputFieldAndCurrencySelector = ({
     fromTo
 }) => {
 
-
+    
     // RECOIL CALL
     const [currencyData, setCurrencyData] = useRecoilState(inputCurrencyDataFrom)
     const [targetCurrencyData, setTargetCurrencyData] = useRecoilState(inputCurrencyDataTo);
+    const [targetCurrencyValue, setTargetCurrencyValue] = useRecoilState(targetCurrencyValueAtom);
+    const [takingUserInputFromInputCurrency , setTakingUserInputFromInputCurrency ] = useRecoilState(takingUserInputFromInputCurrencyAtom)
 
+    console.log(targetCurrencyValue);
 
-
-
+    
+    // ALL USE STATE
+    // const []
+    
+    
     // THE CURRENCY SELECTOR ARRAY
+    const [currentCurrency, setCurrentCurrency] = useState("USD");
+    const [userInputCurrencyValue, setUserInputCurrencyValue] = useState(0);
+
+
+
     const currencyArray = [
         'AUD', 'BGN', 'BRL', 'CAD', 'CHF',
         'CNY', 'CZK', 'DKK', 'EUR', 'GBP',
@@ -41,7 +52,6 @@ export const InputFieldAndCurrencySelector = ({
         'RON', 'RUB', 'SEK', 'SGD', 'THB',
         'TRY', 'USD', 'ZAR'
     ]
-    const [currentCurrency, setCurrentCurrency] = useState("USD");
 
 
 
@@ -63,6 +73,7 @@ export const InputFieldAndCurrencySelector = ({
     }
 
 
+
     if(fromTo == "From"){
         console.log("From :",currencyData);
     }else if(fromTo == "To"){
@@ -80,12 +91,9 @@ export const InputFieldAndCurrencySelector = ({
 
 
     // TAKING THE CURRENCY VALUE FROM THE USER " 20 , 30 "
-    const [userInputCurrencyValue, setUserInputCurrencyValue] = useState(0);
-
-
-
     const currencyInput = (event) => {
         setUserInputCurrencyValue(() => event.target.value);
+        setTakingUserInputFromInputCurrency(() => event.target.value);
         
 
     }
@@ -141,7 +149,7 @@ export const InputFieldAndCurrencySelector = ({
 
                     onChange={currencyInput}
 
-                    value={disableEnableInput ? userInputCurrencyValue : targetCurrencyData}
+                    value={disableEnableInput ? takingUserInputFromInputCurrency : targetCurrencyValue }
 
                     disabled={disableEnableInput ? false : true}
 
@@ -159,7 +167,7 @@ export const InputFieldAndCurrencySelector = ({
             <div className="">
                 <select className=" bg-black text-white px-1 
                 relative top-[1.1rem] text-3xl border-2 border-black cursor-pointer hover:bg-white hover:border-2 hover:border-black hover:text-black"
-                    value={currentCurrency} id="" onChange={currencySelectedFromDropDown}>
+                    value={disableEnableInput ? currencyData : targetCurrencyData } id="" onChange={currencySelectedFromDropDown}>
                     {
                         currencyArray.map((value, index) => {
                             return (

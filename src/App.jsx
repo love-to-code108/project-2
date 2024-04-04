@@ -18,7 +18,8 @@ import {
   useRecoilState
 } from 'recoil';
 
-import { inputCurrencyDataFrom, inputCurrencyDataTo } from "./recoil/atom.js"
+import { inputCurrencyDataFrom, inputCurrencyDataTo, takingUserInputFromInputCurrencyAtom, targetCurrencyValueAtom } from "./recoil/atom.js"
+import { data } from 'autoprefixer';
 
 
 
@@ -55,8 +56,10 @@ function Mainapp() {
 
 
   // ATOM
-  const inputCurrencyDataFetch = useRecoilValue(inputCurrencyDataFrom);
-  const [targetCurrencyData, setTargetCurrencyData] = useRecoilState(inputCurrencyDataTo)
+  const [inputCurrencyDataFetch , setInputCurrencyDataFetch] = useRecoilState(inputCurrencyDataFrom);
+  const [targetCurrencyData, setTargetCurrencyData] = useRecoilState(inputCurrencyDataTo);
+  const [targetCurrencyValue, setTargetCurrencyValue] = useRecoilState(targetCurrencyValueAtom);
+  const [takingUserInputFromInputCurrency , setTakingUserInputFromInputCurrency ] = useRecoilState(takingUserInputFromInputCurrencyAtom)
 
   // console.log("The Value :",inputCurrencyDataFetch);
 
@@ -65,20 +68,31 @@ function Mainapp() {
 
 
   // INITIALISING THE API KEY HERE
-
   const freeCurrencyApi = new Freecurrencyapi(import.meta.env.VITE_API_KEY);
-  console.log("SEX:",inputCurrencyDataFetch);
-  console.log("SEX:",targetCurrencyData);
 
+
+
+  // THE CONVERT BUTTON FUNCTION
   const conversion = () => {
     freeCurrencyApi.latest({
       base_currency: inputCurrencyDataFetch,
       currencies: targetCurrencyData,
     }).then(response => {
-      console.log(response.data);
+
+       // CALCULATING THE VALUE
+      //  console.log("THE USER INPUT :",takingUserInputFromInputCurrency)
+
+      setTargetCurrencyValue(() => Math.round(response["data"][targetCurrencyData] * takingUserInputFromInputCurrency * 100)/100);
     });
+
   }
 
+
+  // THE SWITCH CURRENCY FUNCTION
+  const switchCurrency = () => {
+    setTargetCurrencyData(() => inputCurrencyDataFetch);
+    setInputCurrencyDataFetch(() => targetCurrencyData);
+  }
 
 
 
@@ -115,7 +129,7 @@ function Mainapp() {
 
 
         {/* the switch button */}
-        <div className=' relative bottom-[5.7rem] right-[2rem] cursor-pointer'>
+        <div className=' relative bottom-[5.7rem] right-[2rem] cursor-pointer' onClick={switchCurrency}>
           <div className=' bg-black w-[4rem] h-[4rem] rounded-full flex justify-center items-center border-2 border-white'>
             <img className=' h-[1.5rem]' src={whiteUpArrow} alt=" white up arrow" />
             <img className=' h-[1.5rem]' src={whiteDownArrow} alt=" white down arrow" />
