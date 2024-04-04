@@ -1,21 +1,32 @@
 // COMPONENTS
 import { InputFieldAndCurrencySelector } from './components/InputFieldAndCurrencySelector'
+
 // CSS
 import './App.css'
+
 // ASSETS
 import whiteUpArrow from "./assets/White_UpArrow.svg"
 import whiteDownArrow from "./assets/White_DownArrow.svg"
+
 // FREE CURRENCY API
 import Freecurrencyapi from '@everapi/freecurrencyapi-js';
+
+// RECOIL
+import {
+  RecoilRoot,
+  useRecoilState,
+} from 'recoil'; 
+
+import { inputCurrencyData } from "./recoil/atom.js"
 
 
 
 function App() {
 
   return (
-    <div>
+    <RecoilRoot>
       <Mainapp />
-    </div>
+    </RecoilRoot>
   )
 }
 
@@ -51,6 +62,12 @@ function Mainapp() {
   });
 
 
+
+
+  // ATOM
+  const [ inputCurrencyDataFetch , setInputCurrencyDataFetch ] = useRecoilState(inputCurrencyData);
+
+  console.log(inputCurrencyDataFetch.fromTo);
 
 
 

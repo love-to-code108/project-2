@@ -6,6 +6,7 @@ import "../App.css"
 
 
 
+
 /* SOME IMPORTANT COMMENTS
  THE USER INPUT CURRENCY VALUE IS STORED INSIDE THE 
  userInputCurrencyValue ( THIS IS A STATE NOT A VARIABLE )
@@ -14,22 +15,9 @@ import "../App.css"
 /*
 */
 
-    export const InputFieldAndCurrencySelector = ({
-        fromTo
-    }) => {
-
-       
-
-    
-    
-
-
-
-
-
-
-
-
+export const InputFieldAndCurrencySelector = ({
+    fromTo
+}) => {
 
 
 
@@ -44,8 +32,10 @@ import "../App.css"
         'MYR', 'NOK', 'NZD', 'PHP', 'PLN',
         'RON', 'RUB', 'SEK', 'SGD', 'THB',
         'TRY', 'USD', 'ZAR'
-      ]
-    const [currentCurrency , setCurrentCurrency] = useState("USD")
+    ]
+    const [currentCurrency, setCurrentCurrency] = useState("USD");
+
+
 
 
 
@@ -56,8 +46,12 @@ import "../App.css"
 
     // TAKING THE CURRENCY TYPE " USD , INR " FROM THE USER
     const currencySelectedFromDropDown = (event) => {
-         setCurrentCurrency(() => event.target.value)
+        setCurrentCurrency(() => event.target.value)
     }
+
+
+
+
 
 
 
@@ -66,13 +60,19 @@ import "../App.css"
 
 
     // TAKING THE CURRENCY VALUE FROM THE USER " 20 , 30 "
-    const[userInputCurrencyValue , setUserInputCurrencyValue]  = useState(0);
+    const [userInputCurrencyValue, setUserInputCurrencyValue] = useState(0);
 
     const currencyInput = (event) => {
-         setUserInputCurrencyValue(() => event.target.value) ;
+        setUserInputCurrencyValue(() => event.target.value);
     }
-    
+
     console.log(userInputCurrencyValue);
+
+
+
+
+
+
 
 
 
@@ -80,9 +80,23 @@ import "../App.css"
     // CHECKING THE VALUE INSIDE OF FROM TO DISABLE OR ENABLE INPUT
     let disableEnableInput = true;
     // console.log(fromTo)
-    if(fromTo == "To"){
+    if (fromTo == "To") {
         disableEnableInput = false;
     }
+
+
+
+
+
+
+
+
+
+    // TRYING TO CREATE AN ATOM
+
+    
+
+
 
 
 
@@ -106,15 +120,15 @@ import "../App.css"
                 <label htmlFor="currencyInput">{fromTo}</label>
 
                 <input className=" border-2 border-black"
-                 id="currencyInput" type="number" min={0} 
+                    id="currencyInput" type="number" min={0}
 
-                 onChange={currencyInput} 
-                 
-                 value={userInputCurrencyValue} 
+                    onChange={currencyInput}
 
-                 disabled = {disableEnableInput ? false : true}
-                 
-                 />
+                    value={userInputCurrencyValue}
+
+                    disabled={disableEnableInput ? false : true}
+
+                />
 
             </div>
 
@@ -128,7 +142,7 @@ import "../App.css"
             <div className="">
                 <select className=" bg-black text-white px-1 
                 relative top-[1.1rem] text-3xl border-2 border-black cursor-pointer hover:bg-white hover:border-2 hover:border-black hover:text-black"
-                 value={currentCurrency} id="" onChange={currencySelectedFromDropDown}>
+                    value={currentCurrency} id="" onChange={currencySelectedFromDropDown}>
                     {
                         currencyArray.map((value, index) => {
                             return (
@@ -152,7 +166,7 @@ import "../App.css"
 
 
 InputFieldAndCurrencySelector.propTypes = {
-    fromTo : propTypes.string,
+    fromTo: propTypes.string,
 }
 
 
