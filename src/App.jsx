@@ -14,10 +14,11 @@ import Freecurrencyapi from '@everapi/freecurrencyapi-js';
 // RECOIL
 import {
   RecoilRoot,
-  useRecoilState,
-} from 'recoil'; 
+  useRecoilValue,
+  useRecoilState
+} from 'recoil';
 
-import { inputCurrencyData } from "./recoil/atom.js"
+import { inputCurrencyDataFrom, inputCurrencyDataTo } from "./recoil/atom.js"
 
 
 
@@ -51,24 +52,32 @@ export default App
 function Mainapp() {
 
 
-  // INITIALISING THE API KEY HERE
-  const freeCurrencyApi = new Freecurrencyapi(import.meta.env.VITE_API_KE);
-
-  freeCurrencyApi.latest({
-    base_currency: 'USD',
-    currencies: 'EUR'
-  }).then(response => {
-    console.log(response);
-  });
-
-
 
 
   // ATOM
-  const [ inputCurrencyDataFetch , setInputCurrencyDataFetch ] = useRecoilState(inputCurrencyData);
+  const inputCurrencyDataFetch = useRecoilValue(inputCurrencyDataFrom);
+  const [targetCurrencyData, setTargetCurrencyData] = useRecoilState(inputCurrencyDataTo)
 
-  console.log(inputCurrencyDataFetch.fromTo);
+  // console.log("The Value :",inputCurrencyDataFetch);
 
+
+
+
+
+  // INITIALISING THE API KEY HERE
+
+  const freeCurrencyApi = new Freecurrencyapi(import.meta.env.VITE_API_KEY);
+  console.log("SEX:",inputCurrencyDataFetch);
+  console.log("SEX:",targetCurrencyData);
+
+  const conversion = () => {
+    freeCurrencyApi.latest({
+      base_currency: inputCurrencyDataFetch,
+      currencies: targetCurrencyData,
+    }).then(response => {
+      console.log(response.data);
+    });
+  }
 
 
 
@@ -122,7 +131,7 @@ function Mainapp() {
         {/* the convert button */}
         <div className=' w-[100%] relative bottom-[2rem]'>
           <button className=' font-league text-3xl font-semibold bg-black text-white px-3 pt-2 pb-1 hover:bg-white 
-           hover:text-black hover:border-2 hover:border-black'> Convert </button>
+           hover:text-black hover:border-2 hover:border-black' onClick={conversion}> Convert </button>
         </div>
 
 

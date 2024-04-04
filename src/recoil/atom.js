@@ -1,12 +1,15 @@
 
 import { atom } from "recoil";
 
-export const inputCurrencyData = atom({
+export const inputCurrencyDataFrom = atom({
 
-    key:'inputCurrencyData',
-    default: {
-        fromTo:"From",
-        inputCurrency:0,
-        targetCurrency:0,
-    },
+    key:'inputCurrencyDataFrom',
+    default: 'USD',
+});
+
+
+export const inputCurrencyDataTo = atom({
+
+    key:'inputCurrencyDataTo',
+    default: 'USD',
 });

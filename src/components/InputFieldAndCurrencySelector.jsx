@@ -3,13 +3,17 @@ import { useState } from "react"
 import propTypes from "prop-types"
 import "../App.css"
 
+// IMPORTING AN ATOM 
+import { inputCurrencyDataFrom , inputCurrencyDataTo } from "../recoil/atom.js"
+import { useRecoilState } from "recoil"
+
 
 
 
 
 /* SOME IMPORTANT COMMENTS
- THE USER INPUT CURRENCY VALUE IS STORED INSIDE THE 
- userInputCurrencyValue ( THIS IS A STATE NOT A VARIABLE )
+THE USER INPUT CURRENCY VALUE IS STORED INSIDE THE 
+userInputCurrencyValue ( THIS IS A STATE NOT A VARIABLE )
 */
 
 /*
@@ -19,6 +23,10 @@ export const InputFieldAndCurrencySelector = ({
     fromTo
 }) => {
 
+
+    // RECOIL CALL
+    const [currencyData, setCurrencyData] = useRecoilState(inputCurrencyDataFrom)
+    const [targetCurrencyData, setTargetCurrencyData] = useRecoilState(inputCurrencyDataTo);
 
 
 
@@ -47,6 +55,18 @@ export const InputFieldAndCurrencySelector = ({
     // TAKING THE CURRENCY TYPE " USD , INR " FROM THE USER
     const currencySelectedFromDropDown = (event) => {
         setCurrentCurrency(() => event.target.value)
+        if(fromTo == "To"){
+            setTargetCurrencyData(() => event.target.value);
+        }else if(fromTo == "From"){
+            setCurrencyData(() => event.target.value);
+        }
+    }
+
+
+    if(fromTo == "From"){
+        console.log("From :",currencyData);
+    }else if(fromTo == "To"){
+        console.log("To :",targetCurrencyData);
     }
 
 
@@ -62,11 +82,18 @@ export const InputFieldAndCurrencySelector = ({
     // TAKING THE CURRENCY VALUE FROM THE USER " 20 , 30 "
     const [userInputCurrencyValue, setUserInputCurrencyValue] = useState(0);
 
+
+
     const currencyInput = (event) => {
         setUserInputCurrencyValue(() => event.target.value);
+        
+
     }
 
-    console.log(userInputCurrencyValue);
+
+
+    // console.log("State: ",userInputCurrencyValue);
+    // console.log("State: ",currencyData);
 
 
 
@@ -85,16 +112,6 @@ export const InputFieldAndCurrencySelector = ({
     }
 
 
-
-
-
-
-
-
-
-    // TRYING TO CREATE AN ATOM
-
-    
 
 
 
@@ -124,7 +141,7 @@ export const InputFieldAndCurrencySelector = ({
 
                     onChange={currencyInput}
 
-                    value={userInputCurrencyValue}
+                    value={disableEnableInput ? userInputCurrencyValue : targetCurrencyData}
 
                     disabled={disableEnableInput ? false : true}
 
