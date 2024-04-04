@@ -30,7 +30,7 @@ export const InputFieldAndCurrencySelector = ({
     const [targetCurrencyValue, setTargetCurrencyValue] = useRecoilState(targetCurrencyValueAtom);
     const [takingUserInputFromInputCurrency , setTakingUserInputFromInputCurrency ] = useRecoilState(takingUserInputFromInputCurrencyAtom)
 
-    console.log(targetCurrencyValue);
+    // console.log(targetCurrencyValue);
 
     
     // ALL USE STATE
@@ -75,9 +75,9 @@ export const InputFieldAndCurrencySelector = ({
 
 
     if(fromTo == "From"){
-        console.log("From :",currencyData);
+        // console.log("From :",currencyData);
     }else if(fromTo == "To"){
-        console.log("To :",targetCurrencyData);
+        // console.log("To :",targetCurrencyData);
     }
 
 
@@ -122,6 +122,14 @@ export const InputFieldAndCurrencySelector = ({
 
 
 
+    // HANDELING FOCUS
+    const handleFocus = (event) => {
+        // Use setTimeout to ensure that the select() method is called after the default focus behavior
+        setTimeout(() => {
+          event.target.select();
+        }, 0);
+      };
+
 
 
 
@@ -136,7 +144,7 @@ export const InputFieldAndCurrencySelector = ({
 
 
     return (
-        <div className=" flex justify-center items-center">
+        <div className=" flex flex-col sm:flex-row justify-center items-end sm:items-center">
 
 
 
@@ -144,10 +152,12 @@ export const InputFieldAndCurrencySelector = ({
             <div className="flex flex-col mr-3 text-3xl font-league">
                 <label htmlFor="currencyInput">{fromTo}</label>
 
-                <input className=" border-2 border-black"
+                <input className=" border-2 border-black pt-1 sm:pt-0"
                     id="currencyInput" type="number" min={0}
 
                     onChange={currencyInput}
+
+                    onFocus={handleFocus}
 
                     value={disableEnableInput ? takingUserInputFromInputCurrency : targetCurrencyValue }
 
@@ -164,7 +174,7 @@ export const InputFieldAndCurrencySelector = ({
 
 
             {/* the selector for the multiple currencies */}
-            <div className="">
+            <div className="mr-3 sm:mr-0">
                 <select className=" bg-black text-white px-1 
                 relative top-[1.1rem] text-3xl border-2 border-black cursor-pointer hover:bg-white hover:border-2 hover:border-black hover:text-black"
                     value={disableEnableInput ? currencyData : targetCurrencyData } id="" onChange={currencySelectedFromDropDown}>
